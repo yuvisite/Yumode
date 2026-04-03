@@ -49,7 +49,6 @@ internal fun technologySites(catalog: PortalCatalog): List<PortalSite> =
         catalog.sites.firstOrNull { it.id == "theverge" },
         catalog.sites.firstOrNull { it.id == "ain" },
         catalog.sites.firstOrNull { it.id == "futurism" },
-        catalog.sites.firstOrNull { it.id == "4pda" },
         catalog.sites.firstOrNull { it.id == "overclockers_ua" },
     )
 

@@ -1100,6 +1100,8 @@ internal class LegacyPortalController(
             return false
         }
         val nextPageIndex = (pageIndex + delta).coerceIn(0, maxPageIndex)
+        
+        // Show connecting overlay even though data is cached - instant user feedback  
         startSiteLoadingOverlay(
             totalDurationMs = siteTransitionDelayMs(),
             action = {
@@ -4438,10 +4440,27 @@ internal class LegacyPortalController(
         startSiteLoadingOverlay(
             totalDurationMs = siteTransitionDelayMs(),
             preloadAction = {
-                updateFeedCategorySelection(siteId, category)
-                maybeRefreshMultiSectionSite(siteId)
+                // Load data silently - don't update state, just fetch
+                val sectionFeeds = legacySectionFeedUrlsForSite(siteId) ?: return@startSiteLoadingOverlay
+                val site = catalog.siteById(siteId)
+                val newUrl = if (category.isNullOrBlank()) {
+                    sectionFeeds.values.firstOrNull()
+                } else {
+                    sectionFeeds[category]
+                }
+                if (newUrl != null && site.source is PortalSource.Rss) {
+                    val siteWithNewUrl = site.copy(
+                        source = (site.source as PortalSource.Rss).copy(feedUrl = newUrl)
+                    )
+                    // Fetch without triggering visible state changes
+                    rssRepository.fetchFeed(siteWithNewUrl)
+                }
             },
-            action = { render() },
+            action = {
+                // After white screen: update selection and render with new data
+                updateFeedCategorySelection(siteId, category)
+                render()
+            },
         )
     }
 
@@ -4610,8 +4629,9 @@ internal class LegacyPortalController(
         if (selected == null || !sectionFeeds.containsKey(selected)) {
             return
         }
+        // Only mark as loading, don't clear items - let RSS cache work
         updateFeedState(siteId) { state ->
-            state.copy(items = emptyList(), error = null)
+            state.copy(isLoading = true)
         }
         refreshFeed(site)
     }

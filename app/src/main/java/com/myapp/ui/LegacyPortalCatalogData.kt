@@ -38,7 +38,6 @@ internal fun defaultCatalogPageSeeds(): List<CatalogPageSeed> =
                 CatalogEntrySeed("Mezha", "Tech and culture", "site", "mezha"),
                 CatalogEntrySeed("AIN", "Startups, business and tech", "site", "ain"),
                 CatalogEntrySeed("Futurism", "Future tech and science", "site", "futurism"),
-                CatalogEntrySeed("4PDA", "Devices, Android and mobile tech", "site", "4pda"),
                 CatalogEntrySeed("Overclockers.ua", "Hardware, games, reviews", "site", "overclockers_ua"),
             ),
         ),
