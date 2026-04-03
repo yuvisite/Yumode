@@ -7002,7 +7002,6 @@ internal class LegacyPortalController(
                     siteEntry("Mezha", "Tech and culture", "mezha"),
                     siteEntry("AIN", "Startups, business and tech", "ain"),
                     siteEntry("Futurism", "Future tech and science", "futurism"),
-                    siteEntry("4PDA", "Devices, Android and mobile tech", "4pda"),
                     siteEntry("Overclockers.ua", "Hardware, games, reviews", "overclockers_ua"),
                 ),
             ),
