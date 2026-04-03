@@ -1,0 +1,102 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 34
+    namespace "com.myapp"
+
+    defaultConfig {
+        applicationId "com.myapp"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+tasks.register('syncSiteBrandLogos') {
+    def stopSrc = file("${rootProject.projectDir}/sites/stopgame/logo.png")
+    def playSrc = file("${rootProject.projectDir}/sites/playground/logo.png")
+    def stopDst = file("${projectDir}/src/main/assets/sites/stopgame/logo.png")
+    def playDst = file("${projectDir}/src/main/assets/sites/playground/logo.png")
+    inputs.files(stopSrc, playSrc)
+    outputs.files(stopDst, playDst)
+    doLast {
+        if (!stopSrc.exists()) {
+            throw new GradleException("Missing ${stopSrc}")
+        }
+        if (!playSrc.exists()) {
+            throw new GradleException("Missing ${playSrc}")
+        }
+        copy {
+            from stopSrc
+            into stopDst.parentFile
+        }
+        copy {
+            from playSrc
+            into playDst.parentFile
+        }
+    }
+}
+
+preBuild.dependsOn syncSiteBrandLogos
+
+tasks.register('syncCurrencyFlags1x1') {
+    def srcDir = file("${rootProject.projectDir}/sites/1x1")
+    def dstDir = file("${projectDir}/src/main/assets/sites/1x1")
+    inputs.dir(srcDir)
+    outputs.dir(dstDir)
+    doLast {
+        def required = [
+                "us.svg", "eu.svg", "pl.svg", "gb.svg", "ch.svg",
+                "cz.svg", "ca.svg", "jp.svg", "cn.svg", "ua.svg",
+        ]
+        required.each { name ->
+            def src = file("${srcDir}/${name}")
+            if (!src.exists()) {
+                throw new GradleException("Missing ${src}")
+            }
+        }
+        copy {
+            from srcDir
+            into dstDir
+            required.each { name -> include(name) }
+        }
+    }
+}
+
+preBuild.dependsOn syncCurrencyFlags1x1
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    implementation 'org.jsoup:jsoup:1.22.1'
+    implementation 'com.caverock:androidsvg-aar:1.4'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+}

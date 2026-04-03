@@ -1,0 +1,27 @@
+[
+  {
+    "id": "info",
+    "title": "info",
+    "summary": "weather, money and everyday essentials"
+  },
+  {
+    "id": "news",
+    "title": "news",
+    "summary": "top stories, headlines and daily reading"
+  },
+  {
+    "id": "humor",
+    "title": "humor",
+    "summary": "short jokes and light reading"
+  },
+  {
+    "id": "guide",
+    "title": "guide",
+    "summary": "directories and hand-picked links"
+  },
+  {
+    "id": "region",
+    "title": "Регион",
+    "summary": "Regional and city news feeds"
+  }
+]

@@ -1,0 +1,1186 @@
+[
+    {
+        "id":  "weather_city",
+        "sectionId":  "info",
+        "title":  "city weather",
+        "subtitle":  "today",
+        "summary":  "current weather and a short forecast",
+        "sourceType":  "api",
+        "template":  "api_panel",
+        "status":  "active",
+        "source":  {
+                       "module":  "weather"
+                   }
+    },
+    {
+        "id":  "money_rates",
+        "sectionId":  "info",
+        "title":  "currency rates",
+        "subtitle":  "market",
+        "summary":  "main foreign currency rates for the day",
+        "sourceType":  "api",
+        "template":  "api_panel",
+        "status":  "active",
+        "source":  {
+                       "module":  "currency"
+                   }
+    },
+    {
+        "id":  "ain",
+        "sectionId":  "news",
+        "title":  "ain",
+        "subtitle":  "startup",
+        "summary":  "ain.ua feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://ain.ua/feed/",
+                       "homeUrl":  "https://ain.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "ain.ua",
+                                                           "www.ain.ua"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  768000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ain",
+                                          "allowedHosts":  [
+                                                               "ain.ua",
+                                                               "www.ain.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".post-content",
+                                                                   ".entry-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "itc_ua",
+        "sectionId":  "news",
+        "title":  "itc.ua",
+        "subtitle":  "it news",
+        "summary":  "itc.ua headlines and tags",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "itc",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://feeds.feedburner.com/itcua",
+                       "homeUrl":  "https://itc.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "itc.ua",
+                                                           "www.itc.ua",
+                                                           "feeds.feedburner.com",
+                                                           "feedburner.google.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  256000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "itc-ua",
+                                          "allowedHosts":  [
+                                                               "itc.ua",
+                                                               "www.itc.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".post-content",
+                                                                   ".entry-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "mezha",
+        "sectionId":  "news",
+        "title":  "mezha",
+        "subtitle":  "it culture",
+        "summary":  "mezha.ua feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "mezha",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://mezha.ua/feed",
+                       "homeUrl":  "https://mezha.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "mezha.ua",
+                                                           "www.mezha.ua"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  256000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "mezha",
+                                          "allowedHosts":  [
+                                                               "mezha.ua",
+                                                               "www.mezha.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".post-content",
+                                                                   ".entry-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "gagadget",
+        "sectionId":  "news",
+        "title":  "gagadget",
+        "subtitle":  "gadgets",
+        "summary":  "gagadget.com headlines",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "gagadget",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://gagadget.com/rss/",
+                       "homeUrl":  "https://gagadget.com/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "gagadget.com",
+                                                           "www.gagadget.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  256000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "gagadget",
+                                          "allowedHosts":  [
+                                                               "gagadget.com",
+                                                               "www.gagadget.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".post-content",
+                                                                   ".entry-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "kyiv_vlada",
+        "sectionId":  "region",
+        "title":  "киеввласть",
+        "subtitle":  "kyiv news",
+        "summary":  "kyivvlada.com.ua feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "kyiv_vlada",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://kyivvlada.com.ua/feed/",
+                       "homeUrl":  "https://kyivvlada.com.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "kyivvlada.com.ua",
+                                                           "www.kyivvlada.com.ua"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  768000,
+                                      "maxArticleBytes":  1000000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "kyiv_vlada",
+                                          "allowedHosts":  [
+                                                               "kyivvlada.com.ua",
+                                                               "www.kyivvlada.com.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "[itemprop=articleBody]",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title",
+                                                                 ".post-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo",
+                                                                  "header",
+                                                                  "nav",
+                                                                  "footer",
+                                                                  "aside"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "ua_44",
+        "sectionId":  "region",
+        "title":  "44.ua",
+        "subtitle":  "kyiv city",
+        "summary":  "44.ua rss",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "ua_44",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.44.ua/ru/rss",
+                       "homeUrl":  "https://www.44.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "44.ua",
+                                                           "www.44.ua"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  4500000,
+                                      "maxArticleBytes":  4500000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ua_44",
+                                          "allowedHosts":  [
+                                                               "44.ua",
+                                                               "www.44.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".article__text",
+                                                                   ".news-text",
+                                                                   ".entry-content",
+                                                                   "[itemprop=articleBody]",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".article__title",
+                                                                 ".news-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo",
+                                                                  "header",
+                                                                  "nav",
+                                                                  "footer",
+                                                                  "aside"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "vgorode",
+        "sectionId":  "region",
+        "title":  "vgorode",
+        "subtitle":  "kyiv",
+        "summary":  "vgorode.ua yandex feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "vgorode",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://vgorode.ua/yandex.xml?city_id=38",
+                       "homeUrl":  "https://vgorode.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "vgorode.ua",
+                                                           "www.vgorode.ua"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  768000,
+                                      "maxArticleBytes":  1000000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "vgorode",
+                                          "allowedHosts":  [
+                                                               "vgorode.ua",
+                                                               "www.vgorode.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".article",
+                                                                   ".text",
+                                                                   ".entry-content",
+                                                                   "[itemprop=articleBody]",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".title",
+                                                                 ".article-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo",
+                                                                  "header",
+                                                                  "nav",
+                                                                  "footer",
+                                                                  "aside"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "theverge",
+        "sectionId":  "news",
+        "title":  "the verge",
+        "subtitle":  "tech news",
+        "summary":  "theverge.com feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "verge",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.theverge.com/rss/index.xml",
+                       "homeUrl":  "https://www.theverge.com/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "theverge.com",
+                                                           "www.theverge.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "theverge",
+                                          "allowedHosts":  [
+                                                               "theverge.com",
+                                                               "www.theverge.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".c-entry-content",
+                                                                   ".l-segmented__main",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".c-page-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".c-article__share",
+                                                                  ".c-article__related",
+                                                                  ".c-article__footer",
+                                                                  ".c-article__byline",
+                                                                  ".c-entry-content .c-ad",
+                                                                  ".c-article__ad",
+                                                                  ".c-feature__aside",
+                                                                  "figure",
+                                                                  "picture",
+                                                                  "img"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "ars_news",
+        "sectionId":  "news",
+        "title":  "ars technica",
+        "subtitle":  "sections",
+        "summary":  "all headlines or browse by section",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "ars",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://arstechnica.com/feed/",
+                       "homeUrl":  "https://arstechnica.com/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "arstechnica.com",
+                                                           "www.arstechnica.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  300000,
+                                      "maxArticleBytes":  1200000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ars-standard",
+                                          "allowedHosts":  [
+                                                               "arstechnica.com",
+                                                               "www.arstechnica.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   ".post-content",
+                                                                   ".post-content-double",
+                                                                   "article .post-content",
+                                                                   "article .post-content-double",
+                                                                   "article",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 "article h1"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".story-tools",
+                                                                  "#comments",
+                                                                  ".comments-container",
+                                                                  ".post-navigation",
+                                                                  ".single-most-read",
+                                                                  ".ad-wrapper",
+                                                                  "figure",
+                                                                  "picture",
+                                                                  "img"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "futurism",
+        "sectionId":  "news",
+        "title":  "futurism",
+        "subtitle":  "future",
+        "summary":  "futurism.com feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://futurism.com/feed",
+                       "homeUrl":  "https://futurism.com/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "futurism.com",
+                                                           "www.futurism.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  1024000,
+                                      "maxArticleBytes":  2500000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "futurism",
+                                          "allowedHosts":  [
+                                                               "futurism.com",
+                                                               "www.futurism.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "overclockers_ua",
+        "sectionId":  "news",
+        "title":  "overclockers.ua",
+        "subtitle":  "hardware",
+        "summary":  "Overclockers.ua news and reviews (UA)",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.overclockers.ua/ua/rss.xml",
+                       "homeUrl":  "https://www.overclockers.ua/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "overclockers.ua",
+                                                           "www.overclockers.ua"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  768000,
+                                      "maxArticleBytes":  1000000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "overclockers-ua",
+                                          "allowedHosts":  [
+                                                               "overclockers.ua",
+                                                               "www.overclockers.ua"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".article-content",
+                                                                   ".post-content",
+                                                                   ".entry-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".article-title",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo",
+                                                                  ".comments"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "playground_news",
+        "sectionId":  "news",
+        "title":  "playground news",
+        "subtitle":  "games",
+        "summary":  "playground.ru news feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.playground.ru/rss/news.xml",
+                       "homeUrl":  "https://www.playground.ru/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "playground.ru",
+                                                           "www.playground.ru"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "playground",
+                                          "allowedHosts":  [
+                                                               "playground.ru",
+                                                               "www.playground.ru"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "playground_articles",
+        "sectionId":  "news",
+        "title":  "playground articles",
+        "subtitle":  "games",
+        "summary":  "playground.ru articles feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.playground.ru/rss/articles.xml",
+                       "homeUrl":  "https://www.playground.ru/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "playground.ru",
+                                                           "www.playground.ru"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "playground",
+                                          "allowedHosts":  [
+                                                               "playground.ru",
+                                                               "www.playground.ru"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "stopgame_all",
+        "sectionId":  "news",
+        "title":  "stopgame all",
+        "subtitle":  "games",
+        "summary":  "stopgame all feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://rss.stopgame.ru/rss_all.xml",
+                       "homeUrl":  "https://stopgame.ru/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "rss.stopgame.ru",
+                                                           "stopgame.ru",
+                                                           "www.stopgame.ru"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "stopgame",
+                                          "allowedHosts":  [
+                                                               "stopgame.ru",
+                                                               "www.stopgame.ru"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "stopgame_news",
+        "sectionId":  "news",
+        "title":  "stopgame news",
+        "subtitle":  "games",
+        "summary":  "stopgame news feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://rss.stopgame.ru/rss_news.xml",
+                       "homeUrl":  "https://stopgame.ru/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "rss.stopgame.ru",
+                                                           "stopgame.ru",
+                                                           "www.stopgame.ru"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "stopgame",
+                                          "allowedHosts":  [
+                                                               "stopgame.ru",
+                                                               "www.stopgame.ru"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "ann_newsroom",
+        "sectionId":  "news",
+        "title":  "ann newsroom",
+        "subtitle":  "anime",
+        "summary":  "anime news network newsroom feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.animenewsnetwork.com/newsroom/atom.xml?ann-edition=w",
+                       "homeUrl":  "https://www.animenewsnetwork.com/newsroom/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "animenewsnetwork.com",
+                                                           "www.animenewsnetwork.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ann",
+                                          "allowedHosts":  [
+                                                               "animenewsnetwork.com",
+                                                               "www.animenewsnetwork.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "ann_views",
+        "sectionId":  "news",
+        "title":  "ann views",
+        "subtitle":  "anime",
+        "summary":  "anime news network views feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.animenewsnetwork.com/views/rss.xml?ann-edition=w",
+                       "homeUrl":  "https://www.animenewsnetwork.com/views/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "animenewsnetwork.com",
+                                                           "www.animenewsnetwork.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ann",
+                                          "allowedHosts":  [
+                                                               "animenewsnetwork.com",
+                                                               "www.animenewsnetwork.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "ann_reviews",
+        "sectionId":  "news",
+        "title":  "ann reviews",
+        "subtitle":  "anime",
+        "summary":  "anime news network reviews feed",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.animenewsnetwork.com/all-reviews/atom.xml?ann-edition=w",
+                       "homeUrl":  "https://www.animenewsnetwork.com/all-reviews/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "animenewsnetwork.com",
+                                                           "www.animenewsnetwork.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ann",
+                                          "allowedHosts":  [
+                                                               "animenewsnetwork.com",
+                                                               "www.animenewsnetwork.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "playground",
+        "sectionId":  "news",
+        "title":  "playground",
+        "subtitle":  "games",
+        "summary":  "playground.ru sections",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "playground",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.playground.ru/rss/news.xml",
+                       "homeUrl":  "https://www.playground.ru/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "playground.ru",
+                                                           "www.playground.ru"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "playground",
+                                          "allowedHosts":  [
+                                                               "playground.ru",
+                                                               "www.playground.ru"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "stopgame",
+        "sectionId":  "news",
+        "title":  "stopgame",
+        "subtitle":  "games",
+        "summary":  "stopgame sections",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "stopgame",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://rss.stopgame.ru/rss_all.xml",
+                       "homeUrl":  "https://stopgame.ru/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "rss.stopgame.ru",
+                                                           "stopgame.ru",
+                                                           "www.stopgame.ru"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "stopgame",
+                                          "allowedHosts":  [
+                                                               "stopgame.ru",
+                                                               "www.stopgame.ru"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "ann",
+        "sectionId":  "news",
+        "title":  "ann",
+        "subtitle":  "anime",
+        "summary":  "anime news network sections",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "theme":  "default",
+        "status":  "active",
+        "source":  {
+                       "feedUrl":  "https://www.animenewsnetwork.com/newsroom/atom.xml?ann-edition=w",
+                       "homeUrl":  "https://www.animenewsnetwork.com/",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "animenewsnetwork.com",
+                                                           "www.animenewsnetwork.com"
+                                                       ],
+                                      "allowedSchemes":  [
+                                                             "https"
+                                                         ],
+                                      "maxFeedBytes":  512000,
+                                      "maxArticleBytes":  900000,
+                                      "maxRedirects":  3
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "ann",
+                                          "allowedHosts":  [
+                                                               "animenewsnetwork.com",
+                                                               "www.animenewsnetwork.com"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   "article",
+                                                                   ".entry-content",
+                                                                   ".post-content",
+                                                                   "main"
+                                                               ],
+                                          "titleSelectors":  [
+                                                                 "h1",
+                                                                 ".entry-title"
+                                                             ],
+                                          "removeSelectors":  [
+                                                                  ".share",
+                                                                  ".social",
+                                                                  ".banner",
+                                                                  ".advertisement",
+                                                                  ".promo"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "anekdot_line",
+        "sectionId":  "humor",
+        "title":  "anekdot line",
+        "subtitle":  "coming soon",
+        "summary":  "short jokes and quick laughs",
+        "sourceType":  "rss",
+        "template":  "feed_list",
+        "status":  "planned",
+        "source":  {
+                       "feedUrl":  "pending://jokes-feed",
+                       "homeUrl":  "pending://jokes-home",
+                       "policy":  {
+                                      "allowedHosts":  [
+                                                           "pending.humor"
+                                                       ]
+                                  },
+                       "parserSpec":  {
+                                          "parserId":  "short-humor",
+                                          "allowedHosts":  [
+                                                               "pending.humor"
+                                                           ],
+                                          "contentSelectors":  [
+                                                                   ".entry-content",
+                                                                   ".joke-text",
+                                                                   "article"
+                                                               ],
+                                          "removeSelectors":  [
+                                                                  ".ad",
+                                                                  ".related",
+                                                                  ".comments"
+                                                              ]
+                                      }
+                   }
+    },
+    {
+        "id":  "service_directory",
+        "sectionId":  "guide",
+        "title":  "service directory",
+        "subtitle":  "coming soon",
+        "summary":  "useful links, guides and local pages",
+        "sourceType":  "static",
+        "template":  "portal_list",
+        "status":  "planned",
+        "source":  {
+                       "slug":  "service-directory"
+                   }
+    }
+]

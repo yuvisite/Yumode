@@ -1,0 +1,36 @@
+# Gradle
+.gradle/
+.gradle-user-home/
+build/
+*.gradle
+!gradle-wrapper.jar
+
+# Android
+.idea/
+.android/
+.android-home/
+*.apk
+*.zip
+*.iml
+local.properties
+captures/
+
+# IDE
+.vscode/
+.classpath
+.project
+.settings/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Compiled files
+classes_dump.bin
+*.log
+*.class
+
+# Generated
+gen/
+out/
