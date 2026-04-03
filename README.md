@@ -1,9 +1,6 @@
 # Yumode - i-mode/WAP style RSS News Aggregator for Feature Phones and Garaho / Keitai
 
-
-[![Snimok-ekrana-2026-04-04-023807.png](https://i.postimg.cc/rs3fNc7f/Snimok-ekrana-2026-04-04-023807.png)](https://postimg.cc/jn66sVxf)
-[![image.png](https://i.postimg.cc/0Q5X8Vpk/image.png)](https://postimg.cc/Lq73DBCw)
-
+[![yumode.png](https://i.postimg.cc/KzKqkRH4/yumode.png)](https://postimg.cc/N9c7ZfYw)
 Android RSS feed aggregator for D-pad navigation. 
 
 This is personal tool so websites in catalog and feed are hardcoded, you can change it by redacting source code.
