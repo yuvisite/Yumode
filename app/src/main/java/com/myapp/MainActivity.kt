@@ -261,30 +261,14 @@ class MainActivity : AppCompatActivity() {
             }
         loadingDotsRunnable = dotsRunnable
         mainHandler.post(dotsRunnable)
-        
-        // Start UI rendering in background
-        controller.start(skipHomeFeedPrefetch = true)
-        
-        // Track when home feeds finish loading and minimum overlay duration
-        val startTime = System.currentTimeMillis()
-        var preloadComplete = false
-        var minimumDurationReached = false
-        
-        // Show overlay for minimum time
+
+        // Start UI rendering and let the controller prefetch home feeds normally.
+        controller.start()
+
+        // Show overlay for minimum time.
         mainHandler.postDelayed({
-            minimumDurationReached = true
-            if (preloadComplete) {
-                hideLoadingOverlay(overlay)
-            }
+            hideLoadingOverlay(overlay)
         }, STARTUP_OVERLAY_MIN_DURATION_MS)
-        
-        // Preload home feeds - hide overlay when complete
-        controller.preloadHomeFeedsForStartup {
-            preloadComplete = true
-            if (minimumDurationReached) {
-                hideLoadingOverlay(overlay)
-            }
-        }
     }
 
     private companion object {
