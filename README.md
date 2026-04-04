@@ -3,7 +3,7 @@
 [![yumode.png](https://i.postimg.cc/KzKqkRH4/yumode.png)](https://postimg.cc/N9c7ZfYw)
 Android RSS feed aggregator for D-pad navigation. 
 
-This is personal tool so websites in catalog and feed are hardcoded, you can change it by redacting source code.
+This is personal tool so websites in catalog and feed are hardcoded, you can change it by editing source code.
 
 OS req - Android 5.0 and higher.
 
