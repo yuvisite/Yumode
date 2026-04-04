@@ -1409,7 +1409,7 @@ internal class LegacyPortalController(
         rssViewModel.uiStateLiveData.observe(activity) { state ->
             val previous = rssUiState
             rssUiState = state
-            if (shouldRenderForRssStateChange(previous, state)) {
+            if (siteLoadingStage == null && shouldRenderForRssStateChange(previous, state)) {
                 render()
             }
         }
@@ -4440,25 +4440,12 @@ internal class LegacyPortalController(
         startSiteLoadingOverlay(
             totalDurationMs = siteTransitionDelayMs(),
             preloadAction = {
-                // Load data silently - don't update state, just fetch
-                val sectionFeeds = legacySectionFeedUrlsForSite(siteId) ?: return@startSiteLoadingOverlay
-                val site = catalog.siteById(siteId)
-                val newUrl = if (category.isNullOrBlank()) {
-                    sectionFeeds.values.firstOrNull()
-                } else {
-                    sectionFeeds[category]
-                }
-                if (newUrl != null && site.source is PortalSource.Rss) {
-                    val siteWithNewUrl = site.copy(
-                        source = (site.source as PortalSource.Rss).copy(feedUrl = newUrl)
-                    )
-                    // Fetch without triggering visible state changes
-                    rssRepository.fetchFeed(siteWithNewUrl)
+                updateFeedCategorySelection(siteId, category)
+                if (legacySectionFeedUrlsForSite(siteId) != null) {
+                    maybeRefreshMultiSectionSite(siteId)
                 }
             },
             action = {
-                // After white screen: update selection and render with new data
-                updateFeedCategorySelection(siteId, category)
                 render()
             },
         )
@@ -4628,10 +4615,6 @@ internal class LegacyPortalController(
         val selected = feedCategorySelections[siteId]
         if (selected == null || !sectionFeeds.containsKey(selected)) {
             return
-        }
-        // Only mark as loading, don't clear items - let RSS cache work
-        updateFeedState(siteId) { state ->
-            state.copy(isLoading = true)
         }
         refreshFeed(site)
     }
