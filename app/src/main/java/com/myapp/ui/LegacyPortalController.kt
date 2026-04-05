@@ -3702,7 +3702,7 @@ internal class LegacyPortalController(
                             feedPagerStates = resetPagerSelectionForSite(current.feedPagerStates, site.id),
                         )
                     }
-                    maybeRefreshMultiSectionSite(site.id)
+                    maybeRefreshMultiSectionSite(site.id, sectionLabel)
                 },
                 action = { render() },
             )
@@ -3933,7 +3933,7 @@ internal class LegacyPortalController(
                         feedPagerStates = resetPagerSelectionForSite(current.feedPagerStates, site.id),
                     )
                 }
-                maybeRefreshMultiSectionSite(site.id)
+                maybeRefreshMultiSectionSite(site.id, label)
                 setScreen(PortalScreen.Site(site.id))
             },
             onSelectTag = { key ->
@@ -4442,7 +4442,7 @@ internal class LegacyPortalController(
             preloadAction = {
                 updateFeedCategorySelection(siteId, category)
                 if (legacySectionFeedUrlsForSite(siteId) != null) {
-                    maybeRefreshMultiSectionSite(siteId)
+                    maybeRefreshMultiSectionSite(siteId, category)
                 }
             },
             action = {
@@ -4477,7 +4477,7 @@ internal class LegacyPortalController(
             totalDurationMs = siteTransitionDelayMs(),
             preloadAction = {
                 updateFeedCategorySelection(siteId, category)
-                maybeRefreshMultiSectionSite(siteId)
+                maybeRefreshMultiSectionSite(siteId, category)
             },
             action = { setScreen(PortalScreen.Site(siteId)) },
         )
@@ -4599,24 +4599,30 @@ internal class LegacyPortalController(
             else -> legacySectionFeedUrlsForSite(site.id)?.keys?.toList() ?: availableFeedCategories(items)
         }
 
-    private fun siteForSelectedFeedSection(site: PortalSite): PortalSite {
+    private fun siteForSelectedFeedSection(
+        site: PortalSite,
+        selectedSectionOverride: String? = null,
+    ): PortalSite {
         val source = site.source as? PortalSource.Rss ?: return site
         val sectionFeeds = legacySectionFeedUrlsForSite(site.id) ?: return site
-        val selectedSection = feedCategorySelections[site.id]
+        val selectedSection = selectedSectionOverride ?: feedCategorySelections[site.id]
         val sectionUrl = sectionFeeds[selectedSection] ?: sectionFeeds.values.firstOrNull() ?: return site
         return site.copy(
             source = source.copy(feedUrl = sectionUrl),
         )
     }
 
-    private fun maybeRefreshMultiSectionSite(siteId: String) {
+    private fun maybeRefreshMultiSectionSite(
+        siteId: String,
+        selectedSectionOverride: String? = null,
+    ) {
         val sectionFeeds = legacySectionFeedUrlsForSite(siteId) ?: return
         val site = catalog.siteById(siteId)
-        val selected = feedCategorySelections[siteId]
+        val selected = selectedSectionOverride ?: feedCategorySelections[siteId]
         if (selected == null || !sectionFeeds.containsKey(selected)) {
             return
         }
-        refreshFeed(site)
+        rssViewModel.refreshFeed(siteForSelectedFeedSection(site, selected))
     }
 
     private fun itemMatchesSelectedCategory(
