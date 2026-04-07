@@ -33,8 +33,7 @@ Min SDK 21 required. Tested on Sharp 806SH
 
 ## License
 
-Polyform Noncommercial 
-
+MIT
 See license.txt
 
 ---
