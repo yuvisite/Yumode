@@ -50,6 +50,24 @@ internal object LegacyPortalMezhaArticleRenderer {
                         ArticleBlockType.HEADING -> contentWrap.addView(createMezhaBodyText(block.text, true))
                         ArticleBlockType.LIST_ITEM -> contentWrap.addView(createMezhaBodyText("• ${block.text}", false))
                         ArticleBlockType.PARAGRAPH -> contentWrap.addView(createMezhaBodyText(block.text, false))
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                contentWrap.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = legacyPortalWideImageWidthPx(activity, 8),
+                                                frameColor = Color.BLACK,
+                                                mutedColor = Color.BLACK,
+                                                captionColor = Color.BLACK,
+                                            ),
+                                    ),
+                                )
+                            }
                     }
                 }
                 restoreScrollAndFocus(scrollY, categoryBar, articleLink)
@@ -57,4 +75,3 @@ internal object LegacyPortalMezhaArticleRenderer {
         }
     }
 }
-

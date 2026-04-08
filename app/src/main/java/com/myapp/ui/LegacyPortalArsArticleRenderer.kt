@@ -65,6 +65,24 @@ internal object LegacyPortalArsArticleRenderer {
                         ArticleBlockType.HEADING -> contentWrap.addView(createArsArticleText(block.text, true))
                         ArticleBlockType.LIST_ITEM -> contentWrap.addView(createArsArticleText("• ${block.text}", false))
                         ArticleBlockType.PARAGRAPH -> contentWrap.addView(createArsArticleText(block.text, false))
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                contentWrap.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = legacyPortalWideImageWidthPx(activity, 8),
+                                                frameColor = COLOR_ARS_MUTED,
+                                                mutedColor = COLOR_ARS_MUTED,
+                                                captionColor = COLOR_TEXT,
+                                            ),
+                                    ),
+                                )
+                            }
                     }
                 }
                 restoreScrollAndFocus(scrollY, categoryBar, articleLink)
@@ -72,4 +90,3 @@ internal object LegacyPortalArsArticleRenderer {
         }
     }
 }
-

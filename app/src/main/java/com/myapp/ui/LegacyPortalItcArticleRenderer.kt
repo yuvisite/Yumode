@@ -75,6 +75,24 @@ internal object LegacyPortalItcArticleRenderer {
                         ArticleBlockType.HEADING -> contentWrap.addView(createItcArticleText(block.text, true))
                         ArticleBlockType.LIST_ITEM -> contentWrap.addView(createItcArticleText("• ${block.text}", false))
                         ArticleBlockType.PARAGRAPH -> contentWrap.addView(createItcArticleText(block.text, false))
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                contentWrap.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = legacyPortalWideImageWidthPx(activity, 8),
+                                                frameColor = COLOR_ITC_TEXT,
+                                                mutedColor = COLOR_ITC_TEXT,
+                                                captionColor = COLOR_ITC_TEXT,
+                                            ),
+                                    ),
+                                )
+                            }
                     }
                 }
                 tagLine?.let { contentWrap.addView(it) }
@@ -84,4 +102,3 @@ internal object LegacyPortalItcArticleRenderer {
         }
     }
 }
-

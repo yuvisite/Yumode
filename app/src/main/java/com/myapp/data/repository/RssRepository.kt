@@ -16,6 +16,7 @@ import com.myapp.model.ArticleBlock
 import com.myapp.model.ArticleBlockType
 import com.myapp.model.SanitizedArticle
 import org.jsoup.Jsoup
+import org.jsoup.parser.Parser
 import org.xmlpull.v1.XmlPullParser
 import java.io.IOException
 import java.io.StringReader
@@ -220,6 +221,7 @@ class RssRepository(
                     ArticleBlockType.HEADING -> 120
                     ArticleBlockType.LIST_ITEM -> 90
                     ArticleBlockType.PARAGRAPH -> 100
+                    ArticleBlockType.IMAGE -> 140
                 }
             blockWeight + block.text.length.coerceAtMost(400)
         }
@@ -322,7 +324,12 @@ class RssRepository(
     }
 
     private fun String.sanitize(): String =
-        replace('\u00A0', ' ')
+        Parser.unescapeEntities(this, false)
+            .replace('\u00A0', ' ')
+            .replace('\u2018', '\'')
+            .replace('\u2019', '\'')
+            .replace('\u201C', '"')
+            .replace('\u201D', '"')
             .replace(Regex("\\s+"), " ")
             .trim()
 

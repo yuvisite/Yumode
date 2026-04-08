@@ -174,7 +174,9 @@ internal fun articleToJson(article: SanitizedArticle): String =
                     put(
                         JSONObject()
                             .put("type", block.type.name)
-                            .put("text", block.text),
+                            .put("text", block.text)
+                            .put("imageUrl", block.imageUrl)
+                            .put("imageCaption", block.imageCaption),
                     )
                 }
             },
@@ -191,6 +193,8 @@ internal fun articleFromJson(json: String): SanitizedArticle {
                 ArticleBlock(
                     type = enumValueOf(block.getString("type")),
                     text = block.getString("text"),
+                    imageUrl = block.optString("imageUrl").ifBlank { null },
+                    imageCaption = block.optString("imageCaption").ifBlank { null },
                 ),
             )
         }

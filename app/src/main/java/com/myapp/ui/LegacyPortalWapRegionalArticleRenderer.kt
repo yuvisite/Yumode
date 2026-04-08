@@ -108,6 +108,28 @@ internal object LegacyPortalWapRegionalArticleRenderer {
 
                         ArticleBlockType.PARAGRAPH ->
                             body.addView(bodyText(activity, block.text, false, palette, scaledTextSize, compactLineSpacing, typeface))
+
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                body.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = activity.wapContentWidthPx(),
+                                                frameColor = palette.articleDivider,
+                                                mutedColor = palette.muted,
+                                                captionColor = palette.text,
+                                            ),
+                                        scaledTextSize = scaledTextSize,
+                                        compactLineSpacing = compactLineSpacing,
+                                        typeface = typeface,
+                                    ),
+                                )
+                            }
                     }
                 }
                 restoreScrollAndFocus(scrollY, brandedHeader, articleLink)

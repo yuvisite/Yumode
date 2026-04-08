@@ -1,5 +1,6 @@
 package com.myapp.ui
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
@@ -116,6 +117,30 @@ internal object LegacyPortalArticleRenderer {
 
                         ArticleBlockType.PARAGRAPH ->
                             body.addView(bodyText(activity, block.text, false, theme.bodyColor, scaledTextSize, compactLineSpacing, typeface))
+
+                        ArticleBlockType.IMAGE -> {
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                body.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = theme.contentWidthPxProvider(activity),
+                                                frameColor = theme.dividerColor,
+                                                mutedColor = theme.mutedColor,
+                                                captionColor = theme.bodyColor,
+                                                frameFillColor = Color.TRANSPARENT,
+                                            ),
+                                        scaledTextSize = scaledTextSize,
+                                        compactLineSpacing = compactLineSpacing,
+                                        typeface = typeface,
+                                    ),
+                                )
+                            }
+                        }
                     }
                 }
 

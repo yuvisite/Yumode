@@ -52,6 +52,24 @@ internal object LegacyPortalGagadgetArticleRenderer {
                         ArticleBlockType.HEADING -> contentWrap.addView(createGagadgetArticleText(block.text, true))
                         ArticleBlockType.LIST_ITEM -> contentWrap.addView(createGagadgetArticleText("• ${block.text}", false))
                         ArticleBlockType.PARAGRAPH -> contentWrap.addView(createGagadgetArticleText(block.text, false))
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                contentWrap.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = legacyPortalWideImageWidthPx(activity, 8),
+                                                frameColor = COLOR_GG_TEXT,
+                                                mutedColor = COLOR_GG_TEXT,
+                                                captionColor = COLOR_GG_TEXT,
+                                            ),
+                                    ),
+                                )
+                            }
                     }
                 }
                 restoreScrollAndFocus(scrollY, categoryBar, articleLink)
@@ -59,4 +77,3 @@ internal object LegacyPortalGagadgetArticleRenderer {
         }
     }
 }
-

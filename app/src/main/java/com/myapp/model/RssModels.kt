@@ -4,6 +4,7 @@ enum class ArticleBlockType {
     HEADING,
     PARAGRAPH,
     LIST_ITEM,
+    IMAGE,
 }
 
 data class FeedItem(
@@ -22,6 +23,8 @@ fun FeedItem.primaryCategory(): String? =
 data class ArticleBlock(
     val type: ArticleBlockType,
     val text: String,
+    val imageUrl: String? = null,
+    val imageCaption: String? = null,
 )
 
 data class SanitizedArticle(

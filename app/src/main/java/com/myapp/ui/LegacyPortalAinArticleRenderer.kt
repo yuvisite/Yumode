@@ -105,6 +105,28 @@ internal object LegacyPortalAinArticleRenderer {
 
                         ArticleBlockType.PARAGRAPH ->
                             body.addView(bodyText(activity, block.text, false, scaledTextSize, compactLineSpacing, typeface))
+
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                body.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = activity.wapContentWidthPx(),
+                                                frameColor = colorDivider,
+                                                mutedColor = colorMuted,
+                                                captionColor = colorText,
+                                            ),
+                                        scaledTextSize = scaledTextSize,
+                                        compactLineSpacing = compactLineSpacing,
+                                        typeface = typeface,
+                                    ),
+                                )
+                            }
                     }
                 }
 

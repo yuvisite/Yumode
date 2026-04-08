@@ -156,6 +156,24 @@ internal object LegacyPortalAnnArticleRenderer {
                         ArticleBlockType.HEADING -> addArticleText(block.text, true)
                         ArticleBlockType.LIST_ITEM -> addArticleText("\u2022 ${block.text}", false)
                         ArticleBlockType.PARAGRAPH -> addArticleText(block.text, false)
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                container.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = legacyPortalWideImageWidthPx(activity, 12),
+                                                frameColor = COLOR_ANN_TAG_BORDER,
+                                                mutedColor = COLOR_ANN_META_TEXT,
+                                                captionColor = Color.BLACK,
+                                            ),
+                                    ),
+                                )
+                            }
                     }
                 }
                 restoreArticleScrollAndFocus()

@@ -4806,6 +4806,27 @@ internal class LegacyPortalController(
                         ArticleBlockType.HEADING -> addArticleText(block.text, bold = true)
                         ArticleBlockType.LIST_ITEM -> addArticleText("• ${block.text}")
                         ArticleBlockType.PARAGRAPH -> addArticleText(block.text)
+                        ArticleBlockType.IMAGE ->
+                            block.imageUrl?.takeIf { it.isNotBlank() }?.let { imageUrl ->
+                                container.addView(
+                                    buildLegacyPortalInlineArticleImage(
+                                        activity = activity,
+                                        imageUrl = imageUrl,
+                                        caption = block.imageCaption ?: block.text,
+                                        refererUrl = article.finalUrl,
+                                        style =
+                                            LegacyPortalInlineImageStyle(
+                                                decodeWidthPx = legacyPortalWideImageWidthPx(activity, 8),
+                                                frameColor = COLOR_MUTED,
+                                                mutedColor = COLOR_MUTED,
+                                                captionColor = COLOR_TEXT,
+                                            ),
+                                        scaledTextSize = ::scaledTextSize,
+                                        compactLineSpacing = compactLineSpacing,
+                                        typeface = portalTypeface,
+                                    ),
+                                )
+                            }
                     }
                 }
                 val scroll = articleScrollPositions[articleScrollKey(screen.siteId, screen.feedItem)] ?: 0
