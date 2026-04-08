@@ -3,11 +3,13 @@ package com.myapp.ui
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.util.LruCache
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -196,11 +198,30 @@ private object LegacyPortalInlineArticleImageLoader {
         }
 
         var loadJob: Job? = null
-        var loadStarted = false
+        var isLoadComplete = false
+        var registeredObserver: ViewTreeObserver? = null
+        val visibleRect = Rect()
+        var scrollListener: ViewTreeObserver.OnScrollChangedListener? = null
+        var layoutListener: ViewTreeObserver.OnGlobalLayoutListener? = null
+
+        fun removeVisibilityObservers() {
+            registeredObserver?.takeIf { it.isAlive }?.let { observer ->
+                scrollListener?.let(observer::removeOnScrollChangedListener)
+                layoutListener?.let(observer::removeOnGlobalLayoutListener)
+            }
+            registeredObserver = null
+        }
+
+        fun isFrameVisible(): Boolean =
+            frame.isShown &&
+                frame.width > 0 &&
+                frame.height > 0 &&
+                frame.getGlobalVisibleRect(visibleRect) &&
+                visibleRect.width() > 0 &&
+                visibleRect.height() > 0
 
         fun startLoad() {
-            if (loadStarted) return
-            loadStarted = true
+            if (isLoadComplete || loadJob != null) return
 
             loadJob =
                 activity.lifecycleScope.launch {
@@ -220,10 +241,13 @@ private object LegacyPortalInlineArticleImageLoader {
                             null
                         }
 
+                    loadJob = null
                     if (!frame.isAttachedToWindow) {
                         return@launch
                     }
 
+                    isLoadComplete = true
+                    removeVisibilityObservers()
                     if (bitmap != null) {
                         showBitmap(bitmap)
                     } else {
@@ -232,22 +256,51 @@ private object LegacyPortalInlineArticleImageLoader {
                 }
         }
 
+        fun maybeStartLoadIfVisible() {
+            if (isLoadComplete || loadJob != null) return
+            if (!isFrameVisible()) return
+            startLoad()
+        }
+
+        scrollListener = ViewTreeObserver.OnScrollChangedListener {
+            maybeStartLoadIfVisible()
+        }
+
+        layoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+            maybeStartLoadIfVisible()
+        }
+
+        fun registerVisibilityObservers() {
+            if (isLoadComplete) return
+            val observer = frame.viewTreeObserver
+            if (!observer.isAlive || registeredObserver === observer) {
+                return
+            }
+            removeVisibilityObservers()
+            scrollListener?.let(observer::addOnScrollChangedListener)
+            layoutListener?.let(observer::addOnGlobalLayoutListener)
+            registeredObserver = observer
+        }
+
         frame.addOnAttachStateChangeListener(
             object : View.OnAttachStateChangeListener {
                 override fun onViewAttachedToWindow(v: View) {
-                    startLoad()
+                    registerVisibilityObservers()
+                    maybeStartLoadIfVisible()
                 }
 
                 override fun onViewDetachedFromWindow(v: View) {
                     loadJob?.cancel()
-                    frame.removeOnAttachStateChangeListener(this)
+                    loadJob = null
+                    removeVisibilityObservers()
                 }
             },
         )
 
         frame.post {
             if (frame.isAttachedToWindow) {
-                startLoad()
+                registerVisibilityObservers()
+                maybeStartLoadIfVisible()
             }
         }
 
@@ -349,7 +402,7 @@ private object LegacyPortalInlineArticleImageLoader {
             return null
         }
 
-        val sampleSize = calculateInSampleSize(bounds.outWidth, bounds.outHeight, decodeWidthPx)
+        val sampleSize = calculateInSampleSize(bounds.outWidth, decodeWidthPx)
         val decodeOptions =
             BitmapFactory.Options().apply {
                 inSampleSize = sampleSize
@@ -371,16 +424,15 @@ private object LegacyPortalInlineArticleImageLoader {
 
     private fun calculateInSampleSize(
         width: Int,
-        height: Int,
         targetWidthPx: Int,
     ): Int {
-        var sampleSize = 1
-        var halfWidth = width / 2
-        var halfHeight = height / 2
         val safeTargetWidth = targetWidthPx.coerceAtLeast(1)
-        val safeTargetHeight = (safeTargetWidth * 3 / 2).coerceAtLeast(1)
+        if (width <= safeTargetWidth) {
+            return 1
+        }
 
-        while (halfWidth / sampleSize >= safeTargetWidth && halfHeight / sampleSize >= safeTargetHeight) {
+        var sampleSize = 1
+        while (width / (sampleSize * 2) >= safeTargetWidth) {
             sampleSize *= 2
         }
 
