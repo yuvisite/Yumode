@@ -16,7 +16,7 @@ Yumode main page portal is inspired by Yahoo! Keitai's main page; other sites us
 The UI is implemented using Custom Android Views (without XML layouts or Compose) and is fully optimized for keyboard navigation: D-pad, soft keys, OK/Back.
 Screen states (home/site/article) are rendered programmatically, and transitions and loading are synchronized via an overlay layer to hide intermediate states when switching between categories and pages.
 
-Articles support photos
+Articles support photo
 
 ### Architecture
 Controller-driven navigation and screen state. ViewModel + LiveData for feed and UI state. Repositories for network and cache access. Overlay layer for loading and page transitions
